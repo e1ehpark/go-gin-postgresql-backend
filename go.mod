@@ -1,4 +1,4 @@
-module github.com/e1ehpark/go-gin-postgresql-backend.git
+module github.com/e1ehpark/go-gin-postgresql-backend
 
 go 1.20
 

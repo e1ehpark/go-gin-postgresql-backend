@@ -56,7 +56,7 @@ func UpdateStartup(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"status": "failed", "message": err.Error(),"data":nil})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"status": "success", "message": "Startup updated successfully", "data": updatedStartup})
+	c.JSON(http.StatusOK, gin.H{"status": "success", "message": "Startup updated successfully", "data": updateStartup})
 }
 
 func DeleteStartup(c *gin.Context) {

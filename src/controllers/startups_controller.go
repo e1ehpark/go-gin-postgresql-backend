@@ -12,16 +12,16 @@ func GetAllStartups(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
 	}
-	C.JSON(http.StatusOK, gin.H{"message": "Startups fetched successfully", "status": "success", "data": startup})
+	c.JSON(http.StatusOK, gin.H{"message": "Startups fetched successfully", "status": "success", "data": startups})
 }
 
 func GetStartupByID(c *gin.Context) {
-	startupID := c.Parm("id")
+	startupID := c.Param("id")
 	if startupID == "" {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Startup ID is required"})
 		return
 	}
-	startup, err := models.FetchStartupByID(startupID)
+	startup, err := models.FetchStartup(startupID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
@@ -29,7 +29,7 @@ func GetStartupByID(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Startup fetched successfully", "status": "success", "data": startup})
 }
 func CreateStartup(c *gin.Context) {
-	var startup models.Startup
+	var input models.Startup
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"status": "failed","message": err.Error()})
 		return
@@ -42,7 +42,7 @@ func CreateStartup(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Startup created successfully", "status": "success", "data": savedStartup})
 }
 
-func UpdateStartup(*gin.Context) {
+func UpdateStartup(c *gin.Context) {
 	startupID := c.Param("id")
 
 	var updatedStartup *models.Startup

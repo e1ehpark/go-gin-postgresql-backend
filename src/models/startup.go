@@ -39,6 +39,16 @@ func FetchAllStartups() ([]*Startup, error) {
 }
 
 //Fetches a startup from the database
+func FetchStartup(id string) (*Startup, error) {
+	var startup Startup
+	err := Database.Where("id = ?", id).First(&startup).Error
+	if err != nil {
+		return &Startup{}, err
+	}
+	return &startup, nil
+}
+
+// Updates a startup in the database
 func (startup *Startup) UpdateStartup(id string) (*Startup, error) {
 	err := Database.Model(&Startup{}).Where("id = ?", id).Updates(&startup).Error
 	if err != nil {

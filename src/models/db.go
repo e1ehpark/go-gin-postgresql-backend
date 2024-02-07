@@ -24,7 +24,7 @@ func OpenDatabaseConnection() {
 		username,
 		password,
 		databaseName,
-		port
+		port,
 	)
 	Database, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {

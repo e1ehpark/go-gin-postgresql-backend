@@ -2,7 +2,6 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/e1ehpark/go-gin-postgresql-backend/src/routes"
 )
 
 func startupsGroupRouter(baseRouter *gin.RouterGroup) {

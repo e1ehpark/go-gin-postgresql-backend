@@ -30,7 +30,7 @@ func (startup *Startup) Save() (*Startup, error) {
 
 // Fetches all startups from the database
 func FetchAllStartups() ([]*Startup, error) {
-    var startups []Startup
+    var startups []*Startup
     err := Database.Find(&startups).Error
     if err != nil {
         return []*Startup{}, err

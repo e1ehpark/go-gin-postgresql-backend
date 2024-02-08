@@ -35,5 +35,8 @@ func OpenDatabaseConnection() {
 }
 
 func AutoMigrateModels() {
-	Database.AutoMigrate(&Startup{})
+	db := Database.AutoMigrate(&Startup{})
+	if db != nil && db.Error != nil {
+        fmt.Println("Connection Opened to Database",db.Error)
+    }
 }

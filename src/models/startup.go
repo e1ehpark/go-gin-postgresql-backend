@@ -29,13 +29,13 @@ func (startup *Startup) Save() (*Startup, error) {
 }
 
 // Fetches all startups from the database
-func FetchAllStartups() ([]*Startup, error) {
-    var startups []*Startup
+func FetchAllStartups() (*[]Startup, error) {
+    var startups []Startup
     err := Database.Find(&startups).Error
     if err != nil {
-        return []*Startup{}, err
+        return &[]Startup{}, err
     }
-    return startups, nil
+    return &startups, nil
 }
 
 //Fetches a startup from the database

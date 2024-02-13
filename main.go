@@ -10,6 +10,7 @@ import (
 func main() {
 	utils.LoadEnv()
 	models.OpenDatabaseConnection()
+	models.AutoMigrateModels()
 	router := routes.SetupRoutes()
 	middlewares.RegisterMiddlewares(router)
 	router.Run(":8080")
